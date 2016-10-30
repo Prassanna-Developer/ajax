@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<style>
+table,th,td {
+  border : 1px solid black;
+  border-collapse: collapse;
+}
+th,td {
+  padding: 5px;
+}
+<body>
+	<form action="">
+	<select name="customers" onchange="show(this.value)">
+		<option value="">Select a Customer..</option>
+		<option value="ALFKI">Alfreds Futter</option>
+		<option value="NORTS">North/South</option>
+		<option value="WOLZA">Wolski Zajazd</option>
+	</select>
+	</form>
+	<div id="details">Show Customer info here..</div>
+
+
+<script type="text/javascript">
+		function show(str){
+			var xttp  = new XMLHttpRequest();
+			if(str.length == 0){
+				document.getElementById('details').innerHTML = '';
+				return;
+			}
+			xttp.onreadystatechange = function() {
+				if(this.readyState == 4 && this.status == 200){
+					document.getElementById('details').innerHTML = this.responseText;
+				}
+			}
+			
+
+
+			xttp.open('GET','getcustomer.asp?q='+str,true);
+			xttp.send();
+		}
+
+	</script>
+
+</body>
+</html>

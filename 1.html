@@ -1,0 +1,39 @@
+<html>
+<title>Go to Starting Page</title>
+<body>
+	<script language="javascript" type="text/javascript">
+		
+	function ajaxFunction{
+		var ajaxRequest;
+
+		try{
+			ajaxRequest = new XMLHttpRequest();
+		}
+		catch (e){
+			// For IE
+				try{
+					ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+				}
+				catch (e){
+						try{
+						ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+					}
+					catch (e){
+							// Something is wrong
+							alert("Browser Error OOPS");
+							return false;
+					}
+				}
+		}
+	}
+
+	</script>
+
+	<form name="login-form">
+		User Name <input type="text" name="user_name"> <br>
+		Password <input type="password" name="pwd"> <br>
+		<input type="submit" name="submit">
+	</form>
+
+</body>
+</html>

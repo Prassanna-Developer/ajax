@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+	<div id="new" >
+		<p> Enter the Text in the below field</p>
+		<form>
+			Name:<input type="text" onkeyup="showHint(this.value)">
+		</form>
+		<p>Suggestions: <span id="hint_1"/></p>
+	</div>
+
+
+	<script type="text/javascript">
+		function showHint(str){
+			var view  = document.getElementById('hint_1').innerHTML;
+			var xttp  = new XMLHttpRequest();
+			if(str.length == 0){
+				view = '';
+				return;
+			}
+			xttp.onreadystatechange = function() {
+				if(this.readyState == 4 && this.status == 200){
+					view = this.responseText;
+				}
+			}
+			
+
+
+			xttp.open('GET','gethint.php?q='+str,true);
+			xttp.send();
+		}
+
+	</script>
+
+</body>
+</html>

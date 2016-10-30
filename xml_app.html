@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<body>
+		<div id="data" ></div>
+		<input type="button" name="prevButton" onclick="prev()" value="<<">
+		<input type="button" name="nextButton" onclick="next()" value="<<">
+
+		<script type="text/javascript">
+			var i =0;
+			display(i);
+
+			function display(i){
+				var xhttp = new XMLHttpRequest();
+
+				xhttp.onreadystatechange = function() {
+					if(this.readyState == 4 && this.status == 200){
+						displayExtra(this,i);
+					}
+				}
+
+				xhttp.open('GET','cd_catalog.xml',true);
+				xhttp.send();
+			}
+
+			function displayExtra(xml,i){
+				var xmlDoc = xml.responseXML;
+				var x = xmlDoc.getElementsByTagName('CD');
+				document.getElementById('data').innerHTML = 
+				 'Artists : ' + x[i].getElementsByTagName('ARTIST')[0].childNodes[0].nodeValue + '<br>' +
+				  'TITLE : ' + x[i].getElementsByTagName('TITLE')[0].childNodes[0].nodeValue + '<br>' +
+				  'Year : ' + x[i].getElementsByTagName('YEAR')[0].childNodes[0].nodeValue + '<br>';
+				  
+			}
+
+			function prev() {
+				if(i > 0){
+					i--;
+					display(i);
+				}
+			}
+
+			function next() {
+				if(i < x.length ){
+					i++;
+					display(i);
+				}
+			}
+		</script>
+
+</body>
+</html>
